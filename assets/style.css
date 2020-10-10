@@ -15,7 +15,6 @@
     margin: 10px;
     padding: 10px;
 }
-
 main p {
     display: flex;
     justify-content: center;
@@ -56,4 +55,9 @@ button {
     color: text;
     margin: 0px;
     padding: 0px;
+}
+
+.answer {
+    display: flex;
+    justify-content: center;
 }

@@ -36,11 +36,18 @@ var quizQuestions = [
 ];
 
 var countdownBegin = document.getElementById('start');
-var score = 0;
+var seconds = document.getElementById('timer-text');
+var count = 60;
 
 function startQuiz() {
-
     for (var i = 0; i < quizQuestions.length; i++) {
 
     }
 }
+
+countdownBegin.addEventListener("click", function() {
+    setInterval(function () {
+    count-- ;
+    seconds.textContent = "Time left: " + count;
+}, 1000);
+});

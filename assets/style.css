@@ -40,3 +40,20 @@ button {
     display: flex;
     justify-content: center;
 }
+
+.timer {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 50px;
+    color: text;
+    margin: 0px;
+    padding: 0px;
+
+}
+
+.highscore {
+    font-size: 30px;
+    color: text;
+    margin: 0px;
+    padding: 0px;
+}

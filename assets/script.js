@@ -63,7 +63,14 @@ function checkAnswer(event) {
     if (currentQuestion < quizQuestions.length) {
         displayQuestion();
     }
+    else {
+        questionContainer.innerHTML = '';
+        var highscoreButton = document.createElement("button");
+        highscoreButton.textContent = "Time's up! Click here to insert your highscore!";
+        questionContainer.appendChild(highscoreButton);
+    }
 }
+
 
 function appendTime() {
     count -= 10;

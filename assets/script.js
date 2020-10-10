@@ -19,7 +19,6 @@ var quizQuestions = [
     choices: ["function: myFunction()", "function myFunction()", "function - myFunction()", "function = myFunction()"], 
     answer: "function = myFunction()", },
 ];
-
 var countdownBegin = document.getElementById('start');
 var seconds = document.getElementById('timer-text');
 var count = 60;
@@ -30,33 +29,46 @@ var answers = document.getElementsByClassName('answer');
 
 console.log({questionHeader});
 
+function nextQuestion() {
+    for ( i = 0; i < currentQuestion.length; i++) {
+        
+        displayQuestion();
+    }
+}
+
 function displayQuestion() {
     questionHeader.textContent = currentQuestion.question;
     for ( i = 0; i < answers.length; i++) {
         answers[i].textContent = currentQuestion.choices[i];
         answers[i].addEventListener("click", checkAnswer);
     }
-
 }
 
 function checkAnswer(event) {
     var chosenAnswer = event.target.textContent;
     console.log({chosenAnswer});
-    if (chosenAnswer = currentQuestion.answer) {
-        console.log("hello!");
+    if (event.target.textContent === currentQuestion.answer) {
+        alert("Correct");
+        nextQuestion();
     }
     else {
-        console.log("hello");
+        alert("Incorrect!");
+        appendTime();
     }
-    displayQuestion();
 }
 
+function appendTime () {
+    count -= 10;
+}
 
 countdownBegin.addEventListener("click", function() {
-    setInterval(function () {
+        setInterval(function () {
         count-- ;
         seconds.textContent = "Time left: " + count;
-    }, 1000);
+    }, 1000); 
+    if (count < 0) {
+        clearInterval(count);
+    }
     displayQuestion();
 });
 

@@ -68,27 +68,29 @@ function checkAnswer(event) {
     }
 }
 
-function endGame () {
+function endGame() {
     questionContainer.innerHTML = '';
-        var highscoreButton = document.createElement("button");
-        highscoreButton.textContent = "Time's up! Click here to insert your highscore!";
-        questionContainer.appendChild(highscoreButton);
+    var highscoreButton = document.createElement("button");
+    highscoreButton.textContent = "Time's up! Click here to insert your highscore!";
+    questionContainer.appendChild(highscoreButton);
 
-        highscoreButton.addEventListener("click", function() {
-            questionContainer.innerHTML = '';
-            var submitScore = document.createElement("button");
-            var highscoreForm =  document.createElement("form");
-            var highscoreInput = document.createElement("input");
-            submitScore.textContent = "Submit";
-            highscoreForm.className = "input-form";
-            highscoreForm.appendChild(submitScore);
-            highscoreForm.appendChild(highscoreInput);
-            questionContainer.appendChild(highscoreForm);
+    highscoreButton.addEventListener("click", function () {
+        questionContainer.innerHTML = '';
+        var submitScore = document.createElement("button");
+        var highscoreForm = document.createElement("form");
+        var highscoreInput = document.createElement("input");
+        submitScore.textContent = "Submit";
+        highscoreForm.className = "input-form";
+        highscoreForm.appendChild(submitScore);
+        highscoreForm.appendChild(highscoreInput);
+        questionContainer.appendChild(highscoreForm);
+
+        submitScore.addEventListener("click", function () {
+            var playerInput = highscoreInput.value;
+            localStorage.setItem('Highscore', playerInput);
+            console.log(playerInput);
         });
-}
-
-function saveScore() {
-
+    });
 }
 
 function appendTime() {

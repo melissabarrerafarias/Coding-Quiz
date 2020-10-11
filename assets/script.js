@@ -36,8 +36,6 @@ var currentQuestion = 0;
 var questionContainer = document.getElementById('question-container');
 var questionHeader = document.getElementById('question-header');
 var answers = document.getElementsByClassName('answer');
-var body = document.querySelector("body");
-
 
 console.log({ questionHeader });
 
@@ -70,26 +68,28 @@ function checkAnswer(event) {
     }
 }
 
-function endGame() {
+function endGame () {
     questionContainer.innerHTML = '';
-    var highscoreButton = document.createElement("button");
-    highscoreButton.textContent = "Time's up! Click here to insert your highscore!";
-    var checkScore = questionContainer.appendChild(highscoreButton);
+        var highscoreButton = document.createElement("button");
+        highscoreButton.textContent = "Time's up! Click here to insert your highscore!";
+        questionContainer.appendChild(highscoreButton);
 
-    checkScore.addEventListener("click", function () {
-        var highscoreContainer = document.createElement("div");
-        highscoreContainer.textContent = "hello";
-        var highscoreForm = document.createElement("form");
-        var highscoreInfo = document.createElement("input");
-
-        var scoreInput = highscoreForm.appendChild(highscoreInfo);
-        var completeForm = highscoreContainer.appendChild(scoreInput); 
-        var htmlAttach = completeForm.appendChild(body);
-        htmlAttach.textContent = "hello";
-    })
+        highscoreButton.addEventListener("click", function() {
+            questionContainer.innerHTML = '';
+            var submitScore = document.createElement("button");
+            var highscoreForm =  document.createElement("form");
+            var highscoreInput = document.createElement("input");
+            submitScore.textContent = "Submit";
+            highscoreForm.className = "input-form";
+            highscoreForm.appendChild(submitScore);
+            highscoreForm.appendChild(highscoreInput);
+            questionContainer.appendChild(highscoreForm);
+        });
 }
 
+function saveScore() {
 
+}
 
 function appendTime() {
     count -= 10;
@@ -104,5 +104,4 @@ countdownBegin.addEventListener("click", function () {
         }
     }, 1000);
     displayQuestion();
-});
-
+})

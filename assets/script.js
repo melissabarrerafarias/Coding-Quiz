@@ -36,6 +36,7 @@ var currentQuestion = 0;
 var questionContainer = document.getElementById('question-container');
 var questionHeader = document.getElementById('question-header');
 var answers = document.getElementsByClassName('answer');
+var viewHighscore = document.getElementById('view-highscore');
 
 console.log({ questionHeader });
 
@@ -67,13 +68,32 @@ function checkAnswer(event) {
         endGame();
     }
 }
+// highscore button
+viewHighscore.addEventListener("click", function () {
+    var retrieveScore = localStorage.getItem('Highscore');
 
+    // create container for score
+    questionContainer.innerHTML = '';
+    var highscoreContainer = document.createElement("div");
+    var highscoreContainerInput = document.createElement("ul");
+    var presentHighscores = document.createElement("li");
+
+    //append items to eachother
+    presentHighscores.textContent = retrieveScore;
+    highscoreContainerInput.appendChild(presentHighscores);
+    highscoreContainer.appendChild(highscoreContainerInput);
+    questionContainer.appendChild(highscoreContainer);
+})
+
+// function for ending the game and making the highscore form appear
 function endGame() {
+    // create button to insert scores
     questionContainer.innerHTML = '';
     var highscoreButton = document.createElement("button");
     highscoreButton.textContent = "Time's up! Click here to insert your highscore!";
     questionContainer.appendChild(highscoreButton);
 
+    // create buttons for form
     highscoreButton.addEventListener("click", function () {
         questionContainer.innerHTML = '';
         var submitScore = document.createElement("button");
@@ -81,22 +101,26 @@ function endGame() {
         var highscoreInput = document.createElement("input");
         submitScore.textContent = "Submit";
         highscoreForm.className = "input-form";
+
+        //append buttons to eachother
         highscoreForm.appendChild(submitScore);
         highscoreForm.appendChild(highscoreInput);
         questionContainer.appendChild(highscoreForm);
 
+        //submit button
         submitScore.addEventListener("click", function () {
             var playerInput = highscoreInput.value;
             localStorage.setItem('Highscore', playerInput);
-            console.log(playerInput);
         });
     });
 }
 
+// time penalty for error 
 function appendTime() {
     count -= 10;
 }
 
+// quiz starts
 countdownBegin.addEventListener("click", function () {
     var timer = setInterval(function () {
         count--;

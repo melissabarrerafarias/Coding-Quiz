@@ -36,6 +36,8 @@ var currentQuestion = 0;
 var questionContainer = document.getElementById('question-container');
 var questionHeader = document.getElementById('question-header');
 var answers = document.getElementsByClassName('answer');
+var body = document.querySelector("body");
+
 
 console.log({ questionHeader });
 
@@ -64,12 +66,29 @@ function checkAnswer(event) {
         displayQuestion();
     }
     else {
-        questionContainer.innerHTML = '';
-        var highscoreButton = document.createElement("button");
-        highscoreButton.textContent = "Time's up! Click here to insert your highscore!";
-        questionContainer.appendChild(highscoreButton);
+        endGame();
     }
 }
+
+function endGame() {
+    questionContainer.innerHTML = '';
+    var highscoreButton = document.createElement("button");
+    highscoreButton.textContent = "Time's up! Click here to insert your highscore!";
+    var checkScore = questionContainer.appendChild(highscoreButton);
+
+    checkScore.addEventListener("click", function () {
+        var highscoreContainer = document.createElement("div");
+        highscoreContainer.textContent = "hello";
+        var highscoreForm = document.createElement("form");
+        var highscoreInfo = document.createElement("input");
+
+        var scoreInput = highscoreForm.appendChild(highscoreInfo);
+        var completeForm = highscoreContainer.appendChild(scoreInput); 
+        var htmlAttach = completeForm.appendChild(body);
+        htmlAttach.textContent = "hello";
+    })
+}
+
 
 
 function appendTime() {

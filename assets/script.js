@@ -34,11 +34,11 @@ var seconds = document.getElementById('timer-text');
 var count = 60;
 var currentQuestion = 0;
 var questionContainer = document.getElementById('question-container');
+questionContainer.className = "question-container";
 var questionHeader = document.getElementById('question-header');
+questionHeader.className = "question-header"; 
 var answers = document.getElementsByClassName('answer');
 var viewHighscore = document.getElementById('view-highscore');
-
-console.log({ questionHeader });
 
 
 function displayQuestion() {
@@ -65,7 +65,7 @@ function checkAnswer(event) {
         displayQuestion();
     }
     else {
-        endGame();
+        endGame(); 
     }
 }
 // highscore button
@@ -77,6 +77,8 @@ viewHighscore.addEventListener("click", function () {
     var highscoreContainer = document.createElement("div");
     var highscoreContainerInput = document.createElement("ul");
     var presentHighscores = document.createElement("li");
+    highscoreContainer.className = "highscore-display";
+    highscoreContainerInput.className = "highscore-display";
 
     //append items to eachother
     presentHighscores.textContent = retrieveScore;
@@ -90,7 +92,7 @@ function endGame() {
     // create button to insert scores
     questionContainer.innerHTML = '';
     var highscoreButton = document.createElement("button");
-    highscoreButton.textContent = "Time's up! Click here to insert your highscore!";
+    highscoreButton.textContent = "All done! Click here to insert your highscore!";
     questionContainer.appendChild(highscoreButton);
 
     // create buttons for form
